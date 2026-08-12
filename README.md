@@ -18,7 +18,7 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
  
 **Link oficial (relatórios e dados):** [Publicações e Relatórios — CETESB](https://www.cetesb.sp.gov.br/cetesb/qualidade_ambiental/agua/aguas_interiores/publicacoes_e_relatorios)
  
-**Contexto e explicações sobre o monitoramento:** [Águas Interiores — CETESB](https://www.cetesb.sp.gov.br/cetesb/qualidade_ambiental/agua/aguas_interiores)
+**Contexto e explicações sobre o monitoramento:** [Águas Interiores — CETESB](https://www.cetesb.sp.gov.br/cetesb/qualidade_ambiental/agua/aguas_interiores/)
  
 **Mapa interativo com dados históricos:** [SIGRH — IQA](https://sigrh.sp.gov.br/iqa)
  
