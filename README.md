@@ -9,12 +9,14 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
 **Objetivo geral:** Investigar a evolução do Índice de Qualidade das Águas (IQA) em pontos de monitoramento de Santos e construir um modelo de classificação supervisionada que preveja a categoria de qualidade da água com base em seus parâmetros individuais ( físico-químicos e microbiológicos).
 
 **Período da pesquisa:** a ser decidido.
+**Área pesquisa:** a ser decidido, o grupo está debatendo sobre se restringir a Santos ou trabalhar com todas as cidades da baixada Santista.
  
 ---
  
 ## 2. Base de Dados
  
 **Fonte:** CETESB (Companhia Ambiental do Estado de São Paulo) — Índice de Qualidade das Águas (IQA)
+obs: os dados são encontrados no sistema [infoaguas](https://sistemainfoaguas.cetesb.sp.gov.br/AguasSuperficiais/RelatorioQualidadeAguasSuperficiais/Monitoramento) e é necessário um login para entrar, que pode ser feito de forma rápida e gratuita.
  
 **Link oficial (relatórios e dados):** [Publicações e Relatórios — CETESB](https://www.cetesb.sp.gov.br/cetesb/qualidade_ambiental/agua/aguas_interiores/publicacoes_e_relatorios)
  
