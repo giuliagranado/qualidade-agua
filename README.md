@@ -9,6 +9,7 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
 **Objetivo geral:** Investigar a evolução do Índice de Qualidade das Águas (IQA) em pontos de monitoramento de Santos e construir um modelo de classificação supervisionada que preveja a categoria de qualidade da água com base em seus parâmetros individuais ( físico-químicos e microbiológicos).
 
 **Período da pesquisa:** a ser decidido.
+
 **Área pesquisa:** a ser decidido, o grupo está debatendo sobre se restringir a Santos ou trabalhar com todas as cidades da baixada Santista.
  
 ---
