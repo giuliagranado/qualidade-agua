@@ -17,7 +17,8 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
 ## 2. Base de Dados
  
 **Fonte:** CETESB (Companhia Ambiental do Estado de São Paulo) — Índice de Qualidade das Águas (IQA)
-obs: os dados são encontrados no sistema [infoaguas](https://sistemainfoaguas.cetesb.sp.gov.br/AguasSuperficiais/RelatorioQualidadeAguasSuperficiais/Monitoramento) e é necessário um login para entrar, que pode ser feito de forma rápida e gratuita.
+
+obs: os dados são encontrados no sistema [infoaguas](https://sistemainfoaguas.cetesb.sp.gov.br/AguasSuperficiais/RelatorioQualidadeAguasSuperficiais/Monitoramento) e é necessário um login para entrar, que pode ser feito de forma rápida e gratuita. No 'RelatorioQualidadeAguasSuperficiais' pode ser visto um exemplo de como os dados virão (ainda sem serem filtrados)
  
 **Link oficial (relatórios e dados):** [Publicações e Relatórios — CETESB](https://www.cetesb.sp.gov.br/cetesb/qualidade_ambiental/agua/aguas_interiores/publicacoes_e_relatorios)
  
