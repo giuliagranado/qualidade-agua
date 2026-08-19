@@ -1,6 +1,6 @@
 # Qualidade da Água Potável em Santos: Análise Histórica e Classificação Preditiva
  
-## 1. Descrição da Ideia
+## 1. Descrição da Ideia Inicial (a ser atulizado)
  
 Este projeto tem como objetivo analisar a evolução histórica da qualidade da água em Santos/Baixada Santista e desenvolver um modelo preditivo capaz de **classificar a qualidade da água** (ex: ótima, boa, regular, ruim, péssima) a partir de seus parâmetros físico-químicos e microbiológicos.
  
@@ -8,9 +8,10 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
  
 **Objetivo geral:** Investigar a evolução do Índice de Qualidade das Águas (IQA) em pontos de monitoramento de Santos e construir um modelo de classificação supervisionada que preveja a categoria de qualidade da água com base em seus parâmetros individuais ( físico-químicos e microbiológicos).
 
-**Período da pesquisa:** a ser decidido.
+**Período da pesquisa:** 2022 a 2025, um período abrangendo 4 anos
 
 **Área pesquisa:** a ser decidido, o grupo está debatendo sobre se restringir a Santos ou trabalhar com todas as cidades da baixada Santista.
+atualização: foram escolhidas as cidades de Santos, Bertioga e Cubatão para serem utilizadas na pesquisa, comparando 3 perfis diferentes de cidades: urbana/portuária x industrial x ecoturismo/residencial
  
 ---
  
