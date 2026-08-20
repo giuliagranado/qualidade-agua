@@ -1,4 +1,4 @@
-# Qualidade da Água Potável em Santos: Análise Histórica e Classificação Preditiva
+# Qualidade da Água Potável: Análise Histórica e Classificação Preditiva
  
 ## 1. Descrição da Pesquisa 
  
@@ -16,7 +16,7 @@ Este projeto tem como objetivo analisar a evolução histórica da qualidade da 
  
 ## 2. Base de Dados
  
-**Fonte:** CETESB (Companhia Ambiental do Estado de São Paulo) — Índice de Qualidade das Águas (IQA). Pode ser visto os dados já modelados e filtrados (por nós), restringindo apenas o período e área da pesquisa, no arquivo 'Dataset.xlsx'
+**Fonte:** CETESB (Companhia Ambiental do Estado de São Paulo) — Índice de Qualidade das Águas (IQA). Pode ser visto os dados já modelados e filtrados (por nós), restringindo apenas o período e área da pesquisa, no arquivo ` Dataset.xlsx `
 
 obs: os dados são encontrados no sistema [infoaguas](https://sistemainfoaguas.cetesb.sp.gov.br/AguasSuperficiais/RelatorioQualidadeAguasSuperficiais/Monitoramento) e é necessário um login para entrar, que pode ser feito de forma rápida e gratuita. No 'RelatorioQualidadeAguasSuperficiais' pode ser visto um exemplo de como os dados virão (ainda sem serem filtrados)
  
