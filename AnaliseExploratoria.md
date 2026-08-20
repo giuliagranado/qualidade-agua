@@ -101,4 +101,7 @@ A coluna `Sinal` (que indicava, na extração bruta, se um valor estava abaixo/a
 | Cubatão | Industrial | CUBA02700 | — (a preencher) | — |
 | Bertioga | Ecoturismo/residencial | IPAU02600 | Rio Itapanhaú | Classe 2 |
 
+## 6.1 Observação
+A partir da coleta de 13/06/2023, a linha correspondente a Cubatão passa a ter 72 colunas ausentes de uma vez, contra apenas 2 nas coletas anteriores — um salto abrupto que se repete em todas as coletas seguintes até dezembro de 2025. Isso não é um erro pontual, mas sim uma mudança no escopo analítico da CETESB para esse ponto: a partir dessa data, um bloco inteiro de compostos orgânicos voláteis (COVs) e hidrocarbonetos policíclicos aromáticos (HPAs) — benzeno, tolueno, xilenos, tricloroeteno, clorofórmio, naftaleno, benzo(a)pireno, entre outros — deixou de ser medido nesse ponto. Nenhum desses parâmetros integra os 9 usados no cálculo do IQA, então o índice em si não é afetado; ainda assim, vale registrar essa lacuna estrutural como limitação do dataset, especialmente caso se queira usar variáveis ecotoxicológicas/orgânicas como features adicionais no modelo preditivo.
+
 A diferença de **classe de enquadramento** entre os pontos (Santos como corpo salobro, sujeito à mistura com água do mar, versus Bertioga em Classe 2 de água doce) é um fator relevante a considerar na modelagem: os padrões de referência de qualidade variam por classe, o que pode enviesar comparações diretas do IQA bruto entre municípios se não for tratado explicitamente.
