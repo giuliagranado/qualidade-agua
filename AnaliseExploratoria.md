@@ -1,50 +1,25 @@
-## 3. Dicionário de Dados
+## 1.Análise Exploratória de Dados
  
-### Tipos de variáveis
+### 1.1 Caracterização do dataset
  
-As variáveis do banco se dividem em dois grandes grupos:
- 
-- **Qualitativa (categórica)**
-  - *Nominal*: categorias sem ordem — ex.: `ponto_amostragem`.
-  - *Ordinal*: categorias com ordem — ex.: `categoria_iqa` (Péssima < Ruim < Regular < Boa < Ótima).
-- **Quantitativa (numérica)**
-  - *Discreta*: contagem, val### Tipos de variáveis
- 
-- **Qualitativa (categórica)**
-  - *Nominal*: sem ordem — ex.: `Tipo Rede`, `UGRHI`, `Status Ponto`, `Parametro`, `Sinal`, `Unidade`, `Tipo Parâmetro`, `Sistema Hídrico`, `Tipo de Sistema Hídrico`, `Município`, `UF`, `Localização`, `Captação`.
-  - *Ordinal*: com ordem — ex.: `CLASSE` (classe de enquadramento do corpo hídrico segundo a legislação).
-- **Quantitativa (numérica)**
-  - *Contínua*: `Valor` (o valor medido do parâmetro), `Altitude`.
-- **Identificador**: `Cod_Interaguas`, `Código Ponto` — não são medidas, apenas códigos de referência.
-- **Temporal**: `Período DE`, `Período ATE`, `Data Coleta`, `Hora Coleta`, `Inicio Operação`, `Fim Operação`.
-- **Coordenada geográfica (texto em graus/minutos/segundos)**: `Latitude`, `Longitude`.
-### Dicionário de variáveis
- 
-| Variável | Descrição | Tipo | Domínio / valores observados |
+| Variável | valores observados |
 |---|---|---|---|
-| `Período DE` / `Período ATE` | Intervalo de datas coberto pela extração do relatório | Temporal | dd/mm/aaaa |
-| `Cod_Interaguas` | Código interno do ponto no sistema Infoáguas da CETESB | Identificador | código numérico |
-| `Tipo Rede` | Rede de monitoramento à qual o ponto pertence | Qualitativa nominal | Rede Básica |
-| `UGRHI` | Unidade de Gerenciamento de Recursos Hídricos do ponto | Qualitativa nominal | 07 - BAIXADA SANTISTA |
-| `Código Ponto` | Código do ponto de amostragem | Identificador | ex.: SABO22500 |
-| `Status Ponto` | Situação operacional do ponto | Qualitativa nominal | Ativo \| Inativo |
-| `Data Coleta` | Data em que a amostra foi coletada | Temporal | dd/mm/aaaa |
-| `Hora Coleta` | Hora da coleta da amostra | Temporal | hh:mm |
-| `Parametro` | Nome do parâmetro analisado nesse registro | Qualitativa nominal | 120 valores possíveis (ex.: `pH`, `Turbidez`, `DBO (5, 20)`, `Oxigênio Dissolvido`, `Escherichia coli**`...) |
-| `Sinal` | Indica se o valor está abaixo (`<`) ou acima (`>`) do limite de detecção do método | Qualitativa nominal | `<` \| `>` \| vazio (valor medido diretamente) |
-| `Valor` | Valor numérico medido do parâmetro, na unidade correspondente | Quantitativa contínua | numérico, decimal com vírgula |
-| `Unidade` | Unidade de medida do valor | Qualitativa nominal | U.pH, ºC, mg/L, µg/L, UFC/100mL, µS/cm, UNT, m, Adimensional, EC20(%) |
-| `Tipo Parâmetro` | Categoria/grupo do parâmetro | Qualitativa nominal | ex.: 01- Campo, 02- Físicos, 03- Químicos, 04- Microbiológicos, 05- Hidrobiológicos, 06- Ecotoxicológicos, COVs, PAHs, BTEX |
-| `Sistema Hídrico` | Corpo d'água monitorado | Qualitativa nominal | ex.: Rio Saboó - SABO |
-| `Tipo de Sistema Hídrico` | Classificação hidrológica do corpo d'água | Qualitativa nominal | Rio (Lótico) \| Reservatório (Lêntico) |
-| `CLASSE` | Classe de enquadramento do corpo hídrico (legislação estadual/CONAMA) | Qualitativa ordinal | ex.: Especial, 1, 2, 3, 4, Salobra 1, Salobra 2, Salina 1... |
-| `Município` | Município do ponto de coleta | Qualitativa nominal | SANTOS |
-| `UF` | Unidade federativa | Qualitativa nominal | SP |
-| `Inicio Operação` / `Fim Operação` | Datas de início e (se houver) encerramento do monitoramento no ponto | Temporal | dd/mm/aaaa ou vazio (ponto ainda ativo) |
-| `Latitude` / `Longitude` | Coordenadas do ponto, em graus/minutos/segundos (texto) | Coordenada geográfica | ex.: 23 55 51 / 46 20 59 |
-| `Altitude` | Altitude aproximada do ponto de coleta | Quantitativa contínua | metros |
-| `Localização` | Descrição textual do local exato da coleta | Qualitativa nominal | texto livre, ex.: "Ponte na Av. Pres. Getúlio Vargas..." |
-| `Captação` | Indica se o ponto é usado para captação de água para abastecimento público | Qualitativa nominal | S \| N |
+| `Quantidade de registros` | 48 |
+| `Quantidade de variáveis` | 133 |
+| `Período` | 2022–2025 |
+| `Pontos` |3 |
+| `Cidades` | Bertioga, Cubatão e Santos |
+
+### 1.2 Qualidade dos dados
+ 
+| Variável | valores observados |
+|---|---|---|---|
+| `Valores ausentes` | 48 |
+| `Quantidade de variáveis` | 133 |
+| `Período` | 2022–2025 |
+| `Pontos` |3 |
+| `Cidades` | Bertioga, Cubatão e Santos |
+
  
 ### Parâmetros usados no cálculo do IQA (subconjunto de `Parametro`)
  
