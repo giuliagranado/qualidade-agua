@@ -1,4 +1,4 @@
-# Análise Exploratória de Dados (EDA) — `Dataset.xlsx`
+# Análise Exploratória de Dados (EDA)
 
 ## 1. Objetivo desta Etapa
 
