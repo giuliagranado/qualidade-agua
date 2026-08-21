@@ -17,7 +17,7 @@ Antes de calcular o IQA e treinar o modelo de classificação, esta etapa tem co
 
 | Item | Valor |
 |---|---|
-| Dimensões | 48 linhas × 133 colunas |
+| Dimensões | 48 linhas × 132 colunas |
 | Formato dos dados | **Largo (wide)** — diferente do formato longo da extração bruta do Infoáguas; os dados já vêm pivotados, com cada parâmetro em uma coluna e cada linha representando uma coleta |
 | Pontos de coleta | 3 — `IPAU02600` (Bertioga), `CUBA02700` (Cubatão), `SABO22500` (Santos) |
 | Coletas por ponto | 16 coletas cada (48 no total) |
@@ -44,10 +44,12 @@ A cobertura é **balanceada entre os três municípios**, com periodicidade apro
 ## 4. Qualidade dos Dados
 
 ### 4.1 Formato numérico
-Todos os parâmetros medidos estão armazenados como **texto com vírgula decimal** (ex.: `"6,63000000"`), herdando o padrão numérico brasileiro da extração original da CETESB. É necessário `str.replace(',', '.')` seguido de conversão para `float` antes de qualquer cálculo.
+Todos os parâmetros medidos 'tirando o de chuvas nas últimas 24 horas', o qual foi alterado de 'sim' e 'não' para 0 e 1, estão armazenados como **texto com vírgula decimal** (ex.: `"6,63000000"`), herdando o padrão numérico brasileiro da extração original da CETESB. É necessário `str.replace(',', '.')` seguido de conversão para `float` antes de qualquer cálculo.
 
 ### 4.2 Valores ausentes
 Os dados ausentes se concentram fortemente em compostos orgânicos voláteis e hidrocarbonetos policíclicos aromáticos (colunas de µg/L), com até **32 valores ausentes em 48 linhas** (66%) nas colunas mais esparsas — parâmetros provavelmente analisados apenas em campanhas específicas, não em todas as coletas.
+
+Também houveram parâmetros que foram coratados por falta de dados em um ou mais pontos, mantendo-se ao critério ao menos de três lihas por ponto para manter o para que se mantesse um parãmetro.
 
 Os **9 parâmetros que compõem o IQA**, por outro lado, estão quase completos:
 
@@ -98,10 +100,10 @@ A coluna `Sinal` (que indicava, na extração bruta, se um valor estava abaixo/a
 | Município | Perfil esperado | Ponto | Sistema Hídrico | Classe |
 |---|---|---|---|---|
 | Santos | Urbano/portuário | SABO22500 | Rio Saboó | Salobra 2 |
-| Cubatão | Industrial | CUBA02700 | — (a preencher) | — |
+| Cubatão | Industrial | CUBA02700 | Rio cubatão | Classe 2 |
 | Bertioga | Ecoturismo/residencial | IPAU02600 | Rio Itapanhaú | Classe 2 |
 
 ## 6.1 Observação
-A partir da coleta de 13/06/2023, a linha correspondente a Cubatão passa a ter 72 colunas ausentes de uma vez, contra apenas 2 nas coletas anteriores — um salto abrupto que se repete em todas as coletas seguintes até dezembro de 2025. Isso não é um erro pontual, mas sim uma mudança no escopo analítico da CETESB para esse ponto: a partir dessa data, um bloco inteiro de compostos orgânicos voláteis (COVs) e hidrocarbonetos policíclicos aromáticos (HPAs) — benzeno, tolueno, xilenos, tricloroeteno, clorofórmio, naftaleno, benzo(a)pireno, entre outros — deixou de ser medido nesse ponto. Nenhum desses parâmetros integra os 9 usados no cálculo do IQA, então o índice em si não é afetado; ainda assim, vale registrar essa lacuna estrutural como limitação do dataset, especialmente caso se queira usar variáveis ecotoxicológicas/orgânicas como features adicionais no modelo preditivo.
+A partir da coleta de 13/06/2023 e 08/03/2023, a linha correspondente a Cubatão e Santos respectivamente passa a ter 72 colunas ausentes de uma vez, contra apenas 2 nas coletas anteriores — um salto abrupto que se repete em todas as coletas seguintes até dezembro de 2025. Isso não é um erro pontual, mas sim uma mudança no escopo analítico da CETESB para esse ponto: a partir dessa data, um bloco inteiro de compostos orgânicos voláteis (COVs) e hidrocarbonetos policíclicos aromáticos (HPAs) — benzeno, tolueno, xilenos, tricloroeteno, clorofórmio, naftaleno, benzo(a)pireno, entre outros — deixou de ser medido nesse ponto. Nenhum desses parâmetros integra os 9 usados no cálculo do IQA, então o índice em si não é afetado; ainda assim, vale registrar essa lacuna estrutural como limitação do dataset, especialmente caso se queira usar variáveis ecotoxicológicas/orgânicas como features adicionais no modelo preditivo.
 
 A diferença de **classe de enquadramento** entre os pontos (Santos como corpo salobro, sujeito à mistura com água do mar, versus Bertioga em Classe 2 de água doce) é um fator relevante a considerar na modelagem: os padrões de referência de qualidade variam por classe, o que pode enviesar comparações diretas do IQA bruto entre municípios se não for tratado explicitamente.
