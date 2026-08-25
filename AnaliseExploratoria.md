@@ -67,7 +67,7 @@ Os **9 parâmetros que compõem o IQA**, por outro lado, estão quase completos:
 | Turbidez | `Turbidez (UNT)` | 0 |
 | Resíduo (Sólido) Total | `Sólido Total` | 0 |
 
-Isso é uma boa notícia para o cálculo do IQA: a maior parte dos parâmetros necessários está praticamente completa, com pequenas lacunas pontuais nas frações de nitrogênio (que precisarão ser somadas para compor o Nitrogênio Total).
+Isso é uma boa notícia para o cálculo do IQA: a maior parte dos parâmetros necessários está praticamente completa, com pequenas lacunas pontuais nas frações de nitrogênio (que precisarão ser somadas para compor o Nitrogênio Total) e absência da demanda bioquímica de oxigênio (DBO), pois apenas uma das tabelas continha o parâmetro (santos) e com apenas uma instância.
 
 ### 4.3 Perda da informação de censura (`Sinal`)
 A coluna `Sinal` (que indicava, na extração bruta, se um valor estava abaixo/acima do limite de detecção do método) **não está presente neste arquivo pivotado** — não foi encontrado nenhum valor com `<` ou `>` embutido nas colunas numéricas. Isso sugere que, durante a filtragem/pivotagem do dataset, essa informação de censura estatística foi perdida ou descartada. **Limitação a registrar**: não é possível, a partir deste arquivo, diferenciar um valor medido diretamente de um valor no limite de detecção — algo relevante especialmente para os compostos-traço.
