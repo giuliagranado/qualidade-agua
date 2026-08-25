@@ -66,7 +66,7 @@ As variáveis do banco se dividem em dois grandes grupos:
 | `Status Ponto` | Situação operacional do ponto | Qualitativa nominal | Ativo \| Inativo |
 | `Data Coleta` | Data em que a amostra foi coletada | Temporal | dd/mm/aaaa |
 | `Hora Coleta` | Hora da coleta da amostra | Temporal | hh:mm |
-| `Parametro` | Nome do parâmetro analisado nesse registro | Qualitativa nominal | 120 valores possíveis (ex.: `pH`, `Turbidez`, `DBO (5, 20)`, `Oxigênio Dissolvido`, `Escherichia coli**`...) |
+| `Parametro` | Nome do parâmetro analisado nesse registro | Qualitativa nominal | 120 valores possíveis (ex.: `pH`, `Turbidez`, `Oxigênio Dissolvido`, `Escherichia coli**`...) |
 | `Sinal` | Indica se o valor está abaixo (`<`) ou acima (`>`) do limite de detecção do método | Qualitativa nominal | `<` \| `>` \| vazio (valor medido diretamente) |
 | `Valor` | Valor numérico medido do parâmetro, na unidade correspondente | Quantitativa contínua | numérico, decimal com vírgula |
 | `Unidade` | Unidade de medida do valor | Qualitativa nominal | U.pH, ºC, mg/L, µg/L, UFC/100mL, µS/cm, UNT, m, Adimensional, EC20(%) |
