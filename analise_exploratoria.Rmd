@@ -1,0 +1,120 @@
+---
+title: "Análise Exploratória - Qualidade da Água (IQA) Baixada Santista"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, warning = FALSE, message = FALSE,
+  fig.width = 8, fig.height = 5, fig.path = "figs/"
+)
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(corrplot)
+```
+
+## 1. Importação e limpeza
+
+```{r load-data}
+raw <- read_excel("Dataset_filtrado.xlsx", sheet = "Plan1", range = "B2:AF68")
+
+colnames(raw) <- c(
+  "cod_interaguas", "codigo_ponto", "status_ponto", "data_coleta", "hora_coleta",
+  "od_mgl", "ecoli_ufc", "ph", "temperatura_c",
+  "n_total", "n_nitrito", "n_nitrato", "n_kjeldahl", "n_amoniacal",
+  "fosforo_total", "turbidez_unt", "solido_total",
+  "nome_ponto", "tipo_corpo", "classe", "municipio", "uf",
+  "iqa_od", "iqa_ecoli", "iqa_ph", "iqa_temp", "iqa_ntotal",
+  "iqa_ptotal", "iqa_turbidez", "iqa_solido", "iqa_total"
+)
+
+df <- raw %>%
+  mutate(
+    data_coleta = dmy(data_coleta),
+    municipio   = factor(municipio),
+    classe      = factor(classe)
+  )
+
+glimpse(df)
+```
+
+## 2. Estatísticas descritivas
+
+```{r summary}
+df %>%
+  select(od_mgl, ecoli_ufc, ph, temperatura_c, n_total,
+         fosforo_total, turbidez_unt, solido_total, iqa_total) %>%
+  summary()
+```
+
+## 3. Evolução temporal do IQA por município
+
+```{r iqa-tempo}
+ggplot(df, aes(x = data_coleta, y = iqa_total, color = municipio)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Evolução do IQA por ponto de coleta",
+       x = "Data", y = "IQA") +
+  theme_minimal()
+```
+
+## 4. Distribuição do IQA por município
+
+```{r iqa-boxplot}
+ggplot(df, aes(x = municipio, y = iqa_total, fill = municipio)) +
+  geom_boxplot() +
+  labs(title = "Distribuição do IQA por município", x = NULL, y = "IQA") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## 5. Distribuição dos parâmetros individuais
+
+```{r hist-parametros}
+df %>%
+  select(od_mgl, ph, temperatura_c, n_total, fosforo_total, turbidez_unt) %>%
+  pivot_longer(everything(), names_to = "parametro", values_to = "valor") %>%
+  ggplot(aes(x = valor)) +
+  geom_histogram(bins = 15, fill = "steelblue", color = "white") +
+  facet_wrap(~ parametro, scales = "free") +
+  theme_minimal()
+```
+
+## 6. Parâmetros-chave por município
+
+```{r boxplot-parametros}
+df %>%
+  select(municipio, od_mgl, turbidez_unt, ecoli_ufc) %>%
+  pivot_longer(-municipio, names_to = "parametro", values_to = "valor") %>%
+  ggplot(aes(x = municipio, y = valor, fill = municipio)) +
+  geom_boxplot() +
+  facet_wrap(~ parametro, scales = "free_y") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## 7. Correlação entre parâmetros
+
+```{r correlacao}
+num_vars <- df %>%
+  select(od_mgl, ecoli_ufc, ph, temperatura_c, n_total,
+         fosforo_total, turbidez_unt, solido_total, iqa_total)
+
+corrplot(cor(num_vars, use = "complete.obs"),
+         method = "color", type = "upper",
+         addCoef.col = "black", number.cex = 0.6, tl.cex = 0.8)
+```
+
+## 8. Distribuição das classes de qualidade
+
+```{r classe-freq}
+ggplot(df, aes(x = classe, fill = municipio)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Frequência de classes de qualidade por município",
+       x = "Classe", y = "Contagem") +
+  theme_minimal()
+```
