@@ -107,3 +107,29 @@ A coluna `Sinal` (que indicava, na extração bruta, se um valor estava abaixo/a
 A partir da coleta de 13/06/2023 e 08/03/2023, a linha correspondente a Cubatão e Santos respectivamente passa a ter 72 colunas ausentes de uma vez, contra apenas 2 nas coletas anteriores — um salto abrupto que se repete em todas as coletas seguintes até dezembro de 2025. Isso não é um erro pontual, mas sim uma mudança no escopo analítico da CETESB para esse ponto: a partir dessa data, um bloco inteiro de compostos orgânicos voláteis (COVs) e hidrocarbonetos policíclicos aromáticos (HPAs) — benzeno, tolueno, xilenos, tricloroeteno, clorofórmio, naftaleno, benzo(a)pireno, entre outros — deixou de ser medido nesse ponto. Nenhum desses parâmetros integra os 9 usados no cálculo do IQA, então o índice em si não é afetado; ainda assim, vale registrar essa lacuna estrutural como limitação do dataset, especialmente caso se queira usar variáveis ecotoxicológicas/orgânicas como features adicionais no modelo preditivo.
 
 A diferença de **classe de enquadramento** entre os pontos (Santos como corpo salobro, sujeito à mistura com água do mar, versus Bertioga em Classe 2 de água doce) é um fator relevante a considerar na modelagem: os padrões de referência de qualidade variam por classe, o que pode enviesar comparações diretas do IQA bruto entre municípios se não for tratado explicitamente.
+
+
+## <h1> Gráficos e métricas </h1>
+
+## <h2> Histogramas </h2>
+Com o propósito de melhor entender as distribuições dos parâmetros chaves no cálculo do IQA, foram feitos os histogramas das seguintes variáveis; oxigênio dissolvido, Escherichia coli, PH, temperatura da água, Nitrogênio total (obtido através da soma de todas colunas de nitrogênio), Fósforo total, turbidez e Sólido total. destas oito apenas duas se encaixaram na distribuição normal esperada, sendo estas o PH e a temperatura da água
+
+Um histograma em particular, o de Oxigênio dissolvido se destacou em particular por ter uma distribuição incomum, com concentração em duas faixas não adjacentes, como demonstra a imagem:
+
+para entender isto foram feitos histogramas segragados por cidade, o que revelou que a causa era uma discrepância entre o gráfico de santos, que se concentrava em valores significantemente menores com distribuição decrescente, e os das demais cidades que tinham uma distribuição normal
+
+O restante dos histogramas demonstraram uma distribuição decrescente como o mencionado acima, ou seja, os valores se concentravam nas menores daixas com outliers criando a necessidade de faixas maiores, mas menos populada.
+
+Um destes chegou a demonstrar lacunas de faixas, o que motivou um gráfico de colunas. Ambos seram apresentados na próxima sessão.
+
+## <h2> Comparativos </h2>
+
+As taixas de sólidos demonstrarm habitar faixas extremamente discrepantes entre as cidades, causando o efeito antes mencionado no histrograma, como demonstra a imagem:
+
+Observa-se que Santos tem quase 15 vezes mais sólidos do que a soma das outras duas cidades.
+
+Por conta da escolha de tópico de regressão linear que será feito mais a frente, também foram feitos gráficos de linha tanto do IQA total, quanto do ph. enquando o ph se mostra consistente entre a cidades, o IQA de santos é significantemente mais alto do que o de bertioga e cubatão. nenhuma das linhas demonstra tendências nem de crescimento, nem de decaimento.
+
+
+
+
