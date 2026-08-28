@@ -108,6 +108,7 @@ A partir da coleta de 13/06/2023 e 08/03/2023, a linha correspondente a Cubatão
 
 A diferença de **classe de enquadramento** entre os pontos (Santos como corpo salobro, sujeito à mistura com água do mar, versus Bertioga em Classe 2 de água doce) é um fator relevante a considerar na modelagem: os padrões de referência de qualidade variam por classe, o que pode enviesar comparações diretas do IQA bruto entre municípios se não for tratado explicitamente.
 
+O parâmetro de nitrogênio-nitrito tinha um valor fora do esquadro, na casa dos milhares quando todos os demais são abaixo de 1, este caso foi colocada um 0 enterior ao valor
 
 ## <h1> Gráficos e métricas </h1>
 
