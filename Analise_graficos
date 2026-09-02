@@ -1,0 +1,51 @@
+IQA <- read.csv('https://github.com/giuliagranado/qualidade-agua/blob/main/data/Dataset_filtrado.csv")
+library(ggplot2)
+
+PH <- c(as.numeric(gsub(",",".",IQA[,8][1:48])))
+QUALIS <- c(as.numeric(gsub(",",".",IQA[,31][1:48])))
+
+SÓLIDOS <- c(as.numeric(IQA[,17][1:48]))
+BERTIOGA_S <- sum(SÓLIDOS[1:16])
+CUBATÃO_S <- sum(SÓLIDOS[17:32])
+SANTOS_S <- sum(SÓLIDOS[33:48])
+
+OXIGÊNIODISS <- c(as.numeric(gsub(",",".",IQA[,6][1:48])))
+BERTIOGA <- OXIGÊNIODISS[1:16]
+CUBATÃO <- OXIGÊNIODISS[17:32]
+SANTOS <- OXIGÊNIODISS[33:48]
+
+#COLI <- c(as.numeric(gsub(",",".",IQA[,7][1:48])))
+TEMP <- c(as.numeric(gsub(",",".",IQA[,9][1:48])))
+NIT <- c(as.numeric(gsub(",",".",IQA[,10][1:48])))
+FOS <- c(as.numeric(gsub(",",".",IQA[,15][1:48])))
+TURB <- c(as.numeric(gsub(",",".",IQA[,16][1:48])))
+
+CIDADES = data.frame(
+  cidades=c("Bertioga","Cubatão","Santos") ,
+  sólidos=c(BERTIOGA_S,CUBATÃO_S,SANTOS_S))
+
+cat("Com o propósito de melhor entender as distribuições dos parâmetros chaves no cálculo do IQA, foram feitos os histogramas das seguintes variáveis; oxigênio dissolvido,
+Escherichia coli, PH, temperatura da água, Nitrogênio total (obtido através da soma de todas colunas de nitrogênio),", "\n Fósforo total, turbidez e Sólido total. destas oito apenas duas se encaixaram na distribuição normal esperada, sendo estas o PH e a temperatura da água")
+
+hist(PH)
+hist(TEMP)
+
+cat("Um histograma em particular, o de Oxigênio dissolvido se destacou em particular por ter uma distribuição incomum,","\n com concentração em duas faixas não adjacentes, como demonstra a imagem:")
+hist(OXIGÊNIODISS)
+
+cat("para entender isto foram feitos histogramas segragados por cidade, o que revelou que a causa era uma discrepância entre o gráfico de santos,","\n que se concentrava em valores significantemente menores com distribuição decrescente, e os das demais cidades que tinham uma distribuição normal")
+
+hist(BERTIOGA)
+hist(CUBATÃO)
+hist(SANTOS)
+
+cat("O restante dos histogramas demonstraram uma distribuição decrescente como o mencionado acima, ou seja,",
+    "\n os valores se concentravam nas menores daixas com outliers criando a necessidade de faixas maiores, mas menos populada")
+hist(NIT)
+hist(TURB)
+hist(FOS)
+
+cat("As taixas de sólidos demonstrarm habitar faixas extremamente discrepantes entre as cidades, causando o efeito de lapsos no histrograma, como demonstra a imagem:")
+hist(SÓLIDOS)
+
+barplot(height = c(BERTIOGA_S,CUBATÃO_S,SANTOS_S), names.arg = c("Bertioga","Cubatão","Santos"))
