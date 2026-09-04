@@ -1,4 +1,9 @@
 # Qualidade da Água Potável: Análise Histórica e Classificação Preditiva
+
+Projeto feito por:
+Yuri Salgado
+Giulia Granado 
+Gabrielle Lara
  
 ## 1. Descrição da Pesquisa 
  
