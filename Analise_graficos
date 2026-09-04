@@ -1,4 +1,4 @@
-IQA <- read.csv('https://raw.githubusercontent.com/giuliagranado/qualidade-agua/refs/heads/main/data/Dataset_filtrado.csv")
+IQA <- read.csv('Dataset_filtrado.csv")
 library(ggplot2)
 
 PH <- c(as.numeric(gsub(",",".",IQA[,8][1:48])))
