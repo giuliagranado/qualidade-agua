@@ -113,23 +113,24 @@ O parâmetro de nitrogênio-nitrito tinha um valor fora do esquadro, na casa dos
 ## <h1> Gráficos e métricas </h1>
 
 ## <h2> Histogramas </h2>
+
+Todos os gráficos aqui mencionados estão no código de gráficos, que necessita que seja abaixado o csv de dados filtrados para rodar
+
 Com o propósito de melhor entender as distribuições dos parâmetros chaves no cálculo do IQA, foram feitos os histogramas das seguintes variáveis; oxigênio dissolvido, Escherichia coli, PH, temperatura da água, Nitrogênio total (obtido através da soma de todas colunas de nitrogênio), Fósforo total, turbidez e Sólido total. destas oito apenas duas se encaixaram na distribuição normal esperada, sendo estas o PH e a temperatura da água
 
-Um histograma em particular, o de Oxigênio dissolvido se destacou em particular por ter uma distribuição incomum, com concentração em duas faixas não adjacentes, como demonstra a imagem:
+Um histograma em particular, o de Oxigênio dissolvido se destacou por ter uma distribuição incomum, com concentração em duas faixas não adjacentes
 
 para entender isto foram feitos histogramas segragados por cidade, o que revelou que a causa era uma discrepância entre o gráfico de santos, que se concentrava em valores significantemente menores com distribuição decrescente, e os das demais cidades que tinham uma distribuição normal
 
 O restante dos histogramas demonstraram uma distribuição decrescente como o mencionado acima, ou seja, os valores se concentravam nas menores daixas com outliers criando a necessidade de faixas maiores, mas menos populada.
 
-Um destes chegou a demonstrar lacunas de faixas, o que motivou um gráfico de colunas. Ambos seram apresentados na próxima sessão.
+Um destes chegou a demonstrar lacunas de faixas, o que motivou um gráfico de colunas. Ambos seram discutidos na próxima sessão.
 
 ## <h2> Comparativos </h2>
 
-As taixas de sólidos demonstrarm habitar faixas extremamente discrepantes entre as cidades, causando o efeito antes mencionado no histrograma, como demonstra a imagem:
+As taixas de sólidos demonstrarm habitar faixas extremamente discrepantes entre as cidades, causando o efeito antes mencionado no histrograma, Observou-se que Santos tem quase 15 vezes mais sólidos do que a soma das outras duas cidades.
 
-Observa-se que Santos tem quase 15 vezes mais sólidos do que a soma das outras duas cidades.
-
-Por conta da escolha de tópico de regressão linear que será feito mais a frente, também foram feitos gráficos de linha tanto do IQA total, quanto do ph. enquando o ph se mostra consistente entre a cidades, o IQA de santos é significantemente mais alto do que o de bertioga e cubatão. nenhuma das linhas demonstra tendências nem de crescimento, nem de decaimento.
+Por conta da escolha de tópico de regressão linear que será feito mais a frente, também foram feitos gráficos de linha tanto do IQA total, quanto do ph. enquanto o ph se mostra consistente entre a cidades, o IQA de santos é significantemente mais alto do que o de bertioga e cubatão. nenhuma das linhas demonstra tendências nem de crescimento, nem de decaimento.
 
 
 
