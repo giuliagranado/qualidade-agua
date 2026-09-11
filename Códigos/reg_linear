@@ -87,3 +87,38 @@ plot(TreinoIQA, TreinoPH, pch= 19, col = cazul,xlab= "", ylab= "")
 g <- seq(5, 250, length= 200)
 for (k in 1:3)
 lines(g, predict(lm(TreinoPH~ poly(TreinoIQA,c(1,3,12)[k])),data.frame(TreinoIQA = g)),col=c(cverde, claranja, croxo)[k], lwd=2)
+
+mse <- function(model, actual_response, predictor_values) {
+  predictions <- predict(model, data.frame(TreinoPH = predictor_values))
+  return(mean((actual_response - predictions)^2))
+}
+
+for (g in c(1, 3, 12)) {
+  m <- lm(TreinoIQA ~ poly(TreinoPH, g))
+
+  mse_treino_val <- mse(m, TreinoIQA, TreinoPH)
+
+  mse_teste_val <- mse(m, TesteIQA, Teste) 
+
+  cat("grau", format(g, width = 2),
+      "| MSE treino:", format(round(mse_treino_val, 2), width = 5), 
+      "| MSE teste:", round(mse_teste_val, 2), "\n") 
+}
+
+graus <- 1:12; etr <- ete <- numeric(12)
+for (g in graus) {
+  # Treinar o modelo com os dados de treino
+  m <- lm(TreinoIQA ~ poly(TreinoPH, g))
+
+  # Calcular o MSE para o conjunto de treino
+  etr[g] <- mse(m, TreinoIQA, TreinoPH)
+
+  # Calcular o MSE para o conjunto de teste
+  ete[g] <- mse(m, TesteIQA, Teste)
+}
+
+par(mar = c(4,4,1,1), pty = "s")
+matplot(graus, cbind(etr, ete), type = "l", lwd = 3, lty = 1, col = c(cverde, claranja),
+        xlab = "grau (flexibilidade)", ylab = "MSE")
+points(which.min(ete), min(ete), pch = 19, cex = 1.4, col = croxo)
+legend("topright", legend = c("MSE Treino", "MSE Teste"), col = c(cverde, claranja), lty = 1, lwd = 3)
