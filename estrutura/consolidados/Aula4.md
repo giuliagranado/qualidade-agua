@@ -1,7 +1,38 @@
-<h3> Regressão Linear </h3>
-<p> Para o propósito de regressão linear foi definida como variavel target a de IQA da água no dataset filtrado. 
-como descritoras foram escolhidas a de oxigênio dissolvido e de PH. por conta de discrepância entra as cidades para o oxigênio dissovido
-foi feita a regressão com cada uma das cidades individualmente, e depois com todas juntas. depois foi feita a regressão geral com o PH </p>
+## Explicação do Código — reg_linear
 
-<p> Em geral os dados de cada cidade estavam dispressos, mas no de todas as cidades tem um agrupamento forte proveniente de santos que tem
-uma faixa de valores muito diferente dos outros. os dados de PH pareiam estar em funil, significando que a variância não era 0 </p>
+### 1. Carregamento e preparação dos dados
+
+O CSV é lido com separador `;`, e as principais variáveis são extraídas: 
+pH(PH), oxigênio dissolvido(OXIGÊNIODISS), sólidos totais(SÓLIDOS), temperatura(TEMP),
+nitrogênio(NIT), fósforo(FOS), turbidez(TURB) e IQA total(QUALIS) (coluna 31).
+
+Os dados são divididos em três grupos de 16 observações cada: 
+Bertioga (1–16), Cubatão (17–32) e Santos (33–48). 
+
+A função `gsub(",",".")` converte vírgulas decimais para o padrão do R.
+
+---
+
+### 2. Análise descritiva por cidade
+
+Calcula-se a soma dos sólidos totais(SÓLIDOS) por cidade e cria-se um dataframe `CIDADES` para comparação.
+Em seguida, são gerados quatro gráficos de dispersão entre oxigênio dissolvido e IQA — um por cidade e um geral — 
+cada um com uma reta de regressão linear (`abline(lm(...))`).
+
+---
+
+### 3. Regressão linear simples
+
+Dois modelos lineares são ajustados:
+- `m`: IQA previsto pelo **pH**
+- `n`: IQA previsto pelo **oxigênio dissolvido**
+
+Os coeficientes são exibidos com `coef()`. 
+Os gráficos de resíduos (`resid` vs `fitted`) verificam se os erros têm comportamento 
+aleatório — um pressuposto da regressão linear.
+
+---
+
+### 4. Conclusão do código
+
+Em geral os dados de cada cidade estavam disperssos, mas no de todas as cidades tem um agrupamento forte proveniente de santos que tem uma faixa de valores muito diferente dos outros. os dados de PH pareiam estar em funil, significando que a variância não era 0
