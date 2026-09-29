@@ -1,4 +1,4 @@
-Cod_Interaguas;Código Ponto;Status Ponto;Data Coleta;Hora Coleta;Oxigênio Dissolvido mg/L;pH U.pH;Temperatura da Água ºC;Nitrogênio-Nitrito mg/L;Nitrogênio-Nitrato mg/L;Nitrogênio Kjeldahl mg/L;Nitrogênio Amoniacal mg/L;Nitrogênio Total;Fósforo Total mg/L;Turbidez UNT;Sólido Dissolvido Total mg/L;Chuvas nas últimas 24h 0/1;;;Oxige. adaptado;ph adap;DBO adap
+Cod_Interaguas;CÃ³digo Ponto;Status Ponto;Data Coleta;Hora Coleta;OxigÃªnio Dissolvido mg/L;pH U.pH;Temperatura da Ãgua ÂºC;NitrogÃªnio-Nitrito mg/L;NitrogÃªnio-Nitrato mg/L;NitrogÃªnio Kjeldahl mg/L;NitrogÃªnio Amoniacal mg/L;NitrogÃªnio Total;FÃ³sforo Total mg/L;Turbidez UNT;SÃ³lido Dissolvido Total mg/L;Chuvas nas Ãºltimas 24h 0/1;;;Oxige. adaptado;ph adap;DBO adap
 140;BILL02900;Ativo;15/03/2022;14:03;6,14;6,1;26,2;0,01;0,1;0,5;0,1;0,71;0,02;6,7;100;1;;;1,228;0,854;
 140;BILL02900;Ativo;22/06/2022;14:15;8,78;7,5;19,8;0,01;0,3;1,04;0,39;1,74;0,02;6,6;100;0;;;;;
 140;BILL02900;Ativo;13/10/2022;10:55;9,92;9,2;21,3;0,02;0,22;1,17;0,1;1,51;0,01;9,8;100;0;;;;;
