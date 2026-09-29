@@ -8,11 +8,10 @@
 ### Pergunta Candidata 1 (ESCOLHIDA — Regressão + Predição)
 * **1. A Pergunta:** "Qual será a concentração de Oxigênio Dissolvido (mg/L) na água com base nas medições físico-químicas e ambientais da amostra?"
 * **2. A Resposta (Y):**  | **Quantitativa contínua** | **Unidade:** mg/L (miligramas por litro).
-* **3. Os Preditores (X):** 17 parâmetros físico-químicos e ambientais da tabela (, , , , , , , metais pesados, etc. —  = 17$).
-* **4. O Tipo (As 3 Decisões):** **Supervisionado** | **Regressão** | **Predição**.
+* **3. Os Preditores (X):** 17 parâmetros físico-químicos e ambientais da tabela (metais pesados e etc, ao todo 17).
+* **4. O Tipo (As 3 Decisões):** será algo **Supervisionado** | **Regressão** | **Predição**.
 * **5. A Métrica:** **RMSE** (*Root Mean Squared Error*), medido em mg/L.
 * **6. A Linha de Base a Bater:** (Y) = 1{,}3604$ mg/L — o desvio-padrão da resposta (erro médio ao chutar a média histórica $\bar{Y} = 8{,}4785$ mg/L).
-* **7. O Dono do Problema:** **Comitê de Bacia Hidrográfica e Gestores de Estação de Tratamento de Água (ETA)** — para monitorar a saúde do ecossistema aquático e prever processos de anoxia / necessidade de aeração artificial.
 
 #### Complemento de Classificação (Análise Complementar da Pergunta 1)
 * **Pergunta Binária:** "A água apresentará nível adequado de Oxigênio Dissolvido ($\ge 7{,}0$ mg/L) ou estará abaixo do padrão de qualidade ($< 7{,}0$ mg/L)?"
@@ -29,7 +28,6 @@
 * **4. O Tipo (As 3 Decisões):** **Supervisionado** | **Regressão** | **Predição**.
 * **5. A Métrica:** **RMSE** (*Root Mean Squared Error*), medido em µg/L.
 * **6. A Linha de Base a Bater:** (Y) = 9{,}7477$ µg/L — o desvio-padrão da Clorofila-a ($\bar{Y} = 25{,}6940$ µg/L).
-* **7. O Dono do Problema:** **Vigilância Sanitária e Gestores de Reservatório** — para antecipar florações de algas nocivas (eutrofização) e cianobactérias que alteram gosto/odor da água.
 
 ---
 
@@ -38,16 +36,19 @@
 Aplicou-se o protocolo de 4 testes de diagnóstico diretamente sobre a tabela  ( = 48$ observações distribuídas nos pontos ,  e ):
 
 1. **Vazamento de Dados (*Data Leakage*):**
-   Analisou-se a matriz de correlação de todas as variáveis numéricas com as respostas $. Não há colunas derivadas diretamente do Oxigênio Dissolvido ou da Clorofila-a. Para o Oxigênio, as maiores correlações foram  ( = +0{,}552$),  ( = -0{,}534$),  ( = +0{,}419$) e  ( = -0{,}350$). Nenhuma variável apresentou correlação espúria ( \approx 1{,}0$), confirmando ausência de *leakage*.
+   Analisou-se a matriz de correlação de todas as variáveis numéricas com as respostas, e não há colunas derivadas diretamente do Oxigênio Dissolvido ou da Clorofila-a.
+   Para o Oxigênio, as maiores correlações foram  ( = +0{,}552$),  ( = -0{,}534$),  ( = +0{,}419$) e  ( = -0{,}350$).
+   Nenhuma variável apresentou correlação espúria ( \approx 1{,}0$), confirmando ausência de *leakage*.
 
-2. **Proporção $ vs. $:**
-   A base contém  = 48$ amostras físicas. Para a Pergunta 1 ( = 17$), a razão /p \approx 2{,}82$. Para a Pergunta 2 ( = 11$), a razão /p \approx 4{,}36$. Ambas as razões são **restritas/pequenas**, o que exige cuidado contra o *overfitting* em modelos complexos e justifica o uso de validação cruzada rigorosa e futuras técnicas de regularização (Lasso/Ridge).
+3. **Proporção $ vs. $:**
+   A base contém  = 48 amostras físicas. Para a Pergunta 1 ( = 17 amostras) e para a Pergunta 2 ( = 11 amostras), a razão /p \approx 4,36.
+   Ambas as razões são **restritas/pequenas**, o que exige cuidado contra o *overfitting* em modelos complexos e justifica o uso de validação cruzada rigorosa e futuras técnicas de regularização (Lasso/Ridge).
 
-3. **Variabilidade de $ e Balanço de Classes:**
+5. **Variabilidade de $ e Balanço de Classes:**
    * **Pergunta 1 (Oxigênio Dissolvido):** Varia entre {,}22$ e 1{,}41$ mg/L ($\bar{Y} = 8{,}4785$,  = 1{,}3604$ mg/L). Seu complemento binário apresenta **forte desbalanço de classes**: 1$ amostras adequadas (5{,}42\%$) vs apenas $ críticas (4{,}58\%$).
    * **Pergunta 2 (Clorofila-a):** Varia entre 1{,}30$ e 9{,}05$ µg/L ($\bar{Y} = 25{,}6940$,  = 9{,}7477$ µg/L).
 
-4. **Valores Faltantes ("Buracos"):**
+6. **Valores Faltantes ("Buracos"):**
    Mapeamento de NAs na tabela original:
    * : 3$ valores ausentes de 48 (8{,}75\%$ de buracos) $\rightarrow$ **Variável excluída do modelo**.
    * : $ valores ausentes ({,}17\%$) $\rightarrow$ **Imputados pela mediana**.
