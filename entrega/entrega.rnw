@@ -1,0 +1,220 @@
+% =====================================================================
+% Analise Preditiva da Qualidade da Agua
+% Fatec Baixada Santista - Rubens Lara
+% Arquivos necessarios: trabalho.tex, figura1.png
+% =====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[font=small,labelsep=endash,justification=centering]{caption}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\captionsetup[table]{position=above}
+\captionsetup[figure]{position=above}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+
+% Linha de fonte padrao ABNT
+\newcommand{\fonte}[1]{\par\vspace{2pt}{\centering\small Fonte: #1\par}}
+
+% ---------------------------------------------------------------------
+\begin{document}
+
+% ------------------------- Cabecalho ---------------------------------
+\begin{center}
+  {\LARGE\bfseries Análise Preditiva da Qualidade da \'Agua\par}
+  \vspace{0.8em}
+  {\large\bfseries A pergunta do trabalho: Qual ser\'a a concentra\c{c}\~ao de
+   Oxig\^enio Dissolvido (mg/L) na \'agua com base nas medi\c{c}\~oes
+   f\'isico-qu\'imicas e ambientais da amostra?\par}
+  \vspace{1.2em}
+  {\large Grupo de An\'alise da Qualidade de \'Agua\par}
+  \vspace{0.4em}
+  {\normalsize 25 de setembro de 2026\par}
+  \vspace{1em}
+  {\normalsize Fatec Baixada Santista -- Rubens Lara\par}
+  {\normalsize Tecnologia em Ci\^encia de Dados \,|\, Teoria do Aprendizado Estat\'istico \,|\,
+   Prof.\ Dr.\ Jo\~ao Paulo Ferreira de Mello\par}
+  \vspace{1em}
+  Gabrielle Lara Moricz de Souza -- RA 0051352511001\\
+  Giulia Dias Granado de Marques -- RA 0051352511003\\
+  Yuri Salgado Pinto -- RA 0051352511034\par
+  \vspace{0.6em}
+  Reposit\'orio: \url{https://github.com/giuliagranado/qualidade-agua}
+\end{center}
+
+
+% ------------------------- 1 Introducao ------------------------------
+\section{Introdução}
+
+O monitoramento da qualidade dos recursos h\'idricos \'e fundamental para a
+preserva\c{c}\~ao de ecossistemas aqu\'aticos e para a garantia da seguran\c{c}a do
+abastecimento p\'ublico em regi\~oes metropolitanas (CONAMA, 2005; CETESB, 2022).
+Em bacias de reservat\'orios urbanos, como o Complexo Billings, a concentra\c{c}\~ao
+de Oxig\^enio Dissolvido (OD) atua como o principal indicador bi\'otico da sa\'ude
+da \'agua, sendo diretamente influenciada por processos de eutrofiza\c{c}\~ao, carga
+de efluentes, varia\c{c}\~oes de temperatura e precipita\c{c}\~ao pluviom\'etrica
+(VON SPERLING, 2014; JAMES et al., 2021). Compreender e antecipar varia\c{c}\~oes na
+concentra\c{c}\~ao de oxig\^enio permite identificar processos de anoxia antes que
+ocorra a mortandade em massa de peixes e a degrada\c{c}\~ao acelerada do ecossistema
+(BRUCE et al., 2020).
+
+Conforme destacado por Bruce et al. (2020), a escolha da m\'etrica de avalia\c{c}\~ao
+e a correta defini\c{c}\~ao da pergunta de pesquisa devem preceder qualquer ajuste de
+modelos preditivos complexos. Este texto apresenta o banco de dados do projeto
+(\texttt{Dataset\_atual.csv}), formula a pergunta central do trabalho e demonstra,
+por meio de diagn\'osticos de dados e valida\c{c}\~ao cruzada de 5 dobras, que os dados
+possuem plenas condi\c{c}\~oes de respond\^e-la.
+
+% ------------------------- 2 Banco -----------------------------------
+\section{O banco de dados e o problema}
+
+Os dados utilizados foram obtidos a partir do hist\'orico de monitoramento cont\'inuo
+de esta\c{c}\~oes amostradoras (\texttt{Dataset\_atual.csv}), contemplando medi\c{c}\~oes
+efetuadas nos pontos amostradores \texttt{BILL02900}, \texttt{BIRP00500} e
+\texttt{CFUG02900} (CETESB, 2022). Cada linha da tabela representa uma
+amostragem f\'isica de \'agua realizada em uma data e hor\'ario espec\'ificos. O
+conjunto bruto cont\'em $n = 48$ observa\c{c}\~oes temporais e $p = 17$ preditores
+f\'isico-qu\'imicos e ambientais v\'alidos (incluindo pH, temperatura, turbidez,
+nutrientes nitrogenados e fosfatados, s\'olidos dissolvidos, pluviometria acumulada
+em 24\,h, clorofila-\textit{a} e metais pesados).
+
+A motiva\c{c}\~ao para a escolha deste banco reside no impacto pr\'atico direto do
+problema: a tomada de decis\~ao pelos operadores de Esta\c{c}\~oes de Tratamento de
+\'Agua (ETA) e pelos gestores da bacia hidrogr\'afica. Antecipar a concentra\c{c}\~ao
+exata de Oxig\^enio Dissolvido ($Y$, em mg/L) fornece suporte operacional direto
+para acionar sistemas de aera\c{c}\~ao artificial preventiva e readequar a dosagem de
+insumos qu\'imicos de purifica\c{c}\~ao antes que o fluxo d'\'agua atinja o ponto de
+capta\c{c}\~ao.
+
+% ------------------------- 3 Pergunta --------------------------------
+\section{A pergunta}
+
+Enuncia-se a pergunta central do projeto de forma direta: ``Qual ser\'a a
+concentra\c{c}\~ao de Oxig\^enio Dissolvido (mg/L) na \'agua com base nas medi\c{c}\~oes
+f\'isico-qu\'imicas e ambientais da amostra?'' A Tabela~\ref{tab:ficha} detalha os
+sete campos que a definem.
+
+\begin{table}[htbp]
+  \caption{Ficha da pergunta}
+  \label{tab:ficha}
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{5.2cm} X@{}}
+    \toprule
+    \textbf{Campo} & \textbf{Preenchimento} \\
+    \midrule
+    1. A pergunta, em uma frase & Qual ser\'a a concentra\c{c}\~ao de Oxig\^enio Dissolvido
+      (mg/L) na \'agua com base nas medi\c{c}\~oes f\'isico-qu\'imicas e ambientais da
+      amostra? \\
+    2. Resposta $Y$: coluna, tipo, unidade & Oxig\^enio Dissolvido mg/L --- quantitativa
+      cont\'inua --- mg/L \\
+    3. Preditores $X$: quais e quantos & pH, temperatura, turbidez, nitrog\^enio total,
+      f\'osforo total, s\'olidos, chuva, clorofila-\textit{a}, metais ($p = 17$) \\
+    4. Tipo: as tr\^es decis\~oes & Supervisionado; Regress\~ao; Predi\c{c}\~ao \\
+    5. A m\'etrica & RMSE (\textit{Root Mean Squared Error}), em mg/L \\
+    6. Linha de base a bater & RMSE $= 1{,}3604$ mg/L (desvio-padr\~ao de $Y$, erro do
+      palpite pela m\'edia $\bar{Y} = 8{,}4785$ mg/L) \\
+    7. O dono do problema & Operadores de Esta\c{c}\~ao de Tratamento de \'Agua (ETA) e
+      Gestores de Bacia Hidrogr\'afica \\
+    \bottomrule
+  \end{tabularx}
+  \fonte{Elaborada pelos autores.}
+\end{table}
+
+% ------------------------- 4 Defesa ----------------------------------
+\section{Defesa da pergunta}
+
+A Tabela~\ref{tab:diag} re\'une as quatro verifica\c{c}\~oes feitas sobre o banco de
+dados.
+
+\begin{table}[htbp]
+  \caption{Diagn\'ostico do banco de dados}
+  \label{tab:diag}
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{5.2cm} X@{}}
+    \toprule
+    \textbf{Verifica\c{c}\~ao} & \textbf{Resultado} \\
+    \midrule
+    Tamanho ($n \times p$) & $48 \times 17$ \\
+    Linha de base & RMSE $= 1{,}3604$ mg/L (chutar sempre a m\'edia) \\
+    Maior correla\c{c}\~ao com $Y$ & pH ($r = +0{,}552$) e Chuvas nas \'ultimas 24\,h
+      ($r = -0{,}534$) \\
+    Balan\c{c}o das classes & N\~ao se aplica (resposta quantitativa cont\'inua) \\
+    Valores faltantes & DBO (33 NAs / 68,75\% --- exclu\'ida); N-Kjeldahl (2 NAs ---
+      imputados) \\
+    \bottomrule
+  \end{tabularx}
+  \fonte{Elaborada pelos autores.}
+\end{table}
+
+\noindent\textbf{Vazamento (\textit{Data Leakage}).} A an\'alise da matriz de
+correla\c{c}\~ao indicou que as maiores associa\c{c}\~oes com o Oxig\^enio Dissolvido
+ocorrem com o pH ($r = +0{,}552$) e a precipita\c{c}\~ao ($r = -0{,}534$). Nenhuma
+coluna apresentou correla\c{c}\~ao perfeita ou esp\'uria ($r \approx 1{,}0$),
+garantindo aus\^encia de vazamento.
+
+\noindent\textbf{Tamanho.} Com $n = 48$ amostras e $p = 17$ preditores v\'alidos, a
+raz\~ao $n/p \approx 2{,}82$ mostra-se restrita. Essa limita\c{c}\~ao justifica a
+escolha de modelos parcimoniosos e indica que o uso de t\'ecnicas de regulariza\c{c}\~ao
+(Ridge/Lasso) trar\'a ganhos futuros relevantes.
+
+\noindent\textbf{Balan\c{c}o e faltantes.} A vari\'avel DBO foi exclu\'ida por
+apresentar 68,75\% de dados faltantes. As demais colunas apresentaram preenchimento
+completo ou residual (imputado pela mediana).
+
+A Figura~\ref{fig:resp} mostra a distribui\c{c}\~ao da resposta Oxig\^enio Dissolvido
+(mg/L) no banco de dados.
+
+\noindent\textbf{Avaliação Numérica por Validação Cruzada (5-\textit{Fold} CV).}
+Para comprovar o valor preditivo fora da amostra (\textit{out-of-sample}), ajustou-se
+um modelo de Regress\~ao Linear (\texttt{lm}) avaliado via Valida\c{c}\~ao Cruzada de 5
+dobras. O modelo obteve um RMSE de $0{,}8557$ mg/L, representando uma redu\c{c}\~ao de
+37,10\% no erro em rela\c{c}\~ao \`a linha de base ($1{,}3604$ mg/L). Em contrapartida, a
+abordagem alternativa de classifica\c{c}\~ao bin\'aria (OD $\geq 7{,}0$ mg/L) estagnou no
+patamar da linha de base (85,11\% contra 85,42\%), devido ao desbalanceamento das
+classes (apenas 7 casos cr\'iticos em 48).
+
+\noindent\textbf{Veredito.} Os resultados num\'ericos comprovam que a pergunta se
+sustenta fortemente: o modelo de regress\~ao linear para a concentra\c{c}\~ao de
+Oxigênio Dissolvido extrai sinal real dos preditores ambientais e supera
+significativamente o palpite ing\^enuo da m\'edia.
+
+A pergunta \'e \textbf{provis\'oria}: ser\'a revista depois da Aula~12, quando o grupo
+tiver o kit supervisionado completo (modelos de regulariza\c{c}\~ao Lasso/Ridge,
+\'arvores de decis\~ao e \textit{ensembles}).
+
+% ------------------------- Referencias -------------------------------
+\section*{Referências}
+\addcontentsline{toc}{section}{Referências}
+\begingroup
+\raggedright\small\setlength{\parindent}{0pt}\setlength{\parskip}{10pt}
+
+BRUCE, P.; BRUCE, A.; GEDECK, I. \textbf{Estat\'istica Pr\'atica para Cientistas de
+Dados:} 50 conceitos essenciais. 2. ed. Rio de Janeiro: Alta Books, 2020.
+
+CETESB. \textbf{Relat\'orio de Qualidade das \'Aguas Interiores no Estado de S\~ao
+Paulo 2021.} S\~ao Paulo: Companhia Ambiental do Estado de S\~ao Paulo, 2022.
+
+CONAMA. \textbf{Resolu\c{c}\~ao CONAMA n\textordmasculine\ 357, de 17 de mar\c{c}o de 2005.}
+Disp\~oe sobre a classifica\c{c}\~ao dos corpos de \'agua e diretrizes ambientais para o
+seu enquadramento. Bras\'ilia, DF: Di\'ario Oficial da Uni\~ao, 2005.
+
+JAMES, G.; WITTEN, D.; HASTIE, T.; TIBSHIRANI, R. \textbf{An Introduction to
+Statistical Learning:} with Applications in R. 2. ed. New York: Springer, 2021.
+
+VON SPERLING, M. \textbf{Introdu\c{c}\~ao \`a qualidade das \'aguas e ao tratamento de
+esgotos.} 4. ed.Belo Horizonte: Editora UFMG, 2014.
+\endgroup
+
+\end{document}
