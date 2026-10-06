@@ -173,8 +173,6 @@ escolha de modelos parcimoniosos e indica que o uso de t\'ecnicas de regulariza\
 apresentar 68,75\% de dados faltantes. As demais colunas apresentaram preenchimento
 completo ou residual (imputado pela mediana).
 
-A Figura~\ref{fig:resp} mostra a distribui\c{c}\~ao da resposta Oxig\^enio Dissolvido
-(mg/L) no banco de dados.
 
 \noindent\textbf{Avaliação Numérica por Validação Cruzada (5-\textit{Fold} CV).}
 Para comprovar o valor preditivo fora da amostra (\textit{out-of-sample}), ajustou-se
@@ -191,8 +189,8 @@ Oxigênio Dissolvido extrai sinal real dos preditores ambientais e supera
 significativamente o palpite ing\^enuo da m\'edia.
 
 A pergunta \'e \textbf{provis\'oria}: ser\'a revista depois da Aula~12, quando o grupo
-tiver o kit supervisionado completo (modelos de regulariza\c{c}\~ao Lasso/Ridge,
-\'arvores de decis\~ao e \textit{ensembles}).
+tiver o kit supervisionado completo (modelos de /regulariza\c{c}\~ao Lasso/Ridge,
+\'arvores de decis\~ao e \textit{ensembles}). No entanto, acreditamos que a pergunta seja realmente interessante por avaliar o que ocorre no caminho entre pontos de coleta e gera um entedimento mais profundo sobre o principal peso no calcúlo do IQA.
 
 % ------------------------- Referencias -------------------------------
 \section*{Referências}
