@@ -1,16 +1,70 @@
-# Qualidade da Água Potável: Análise Histórica e Classificação Preditiva
+# Análise Preditiva da Qualidade da Água
 
-Projeto feito por:
-Yuri Salgado, Giulia Granado, Gabrielle Lara
- 
-## Descrição da Pesquisa 
- 
-Este projeto tem como objetivo analisar a evolução histórica da qualidade da água em cidades de diferentes perfis da Baixada Santista e desenvolver um modelo preditivo capaz de **classificar a qualidade da água** (ex: ótima, boa, regular, ruim, péssima) a partir de seus parâmetros físico-químicos e microbiológicos.
- 
-**Pergunta de pesquisa:** É possível prever a categoria de qualidade da água a partir de seus parâmetros histórico-físico-químicos, e quais desses parâmetros mais influenciam essa classificação?
- 
-**Objetivo geral:** Investigar a evolução do Índice de Qualidade das Águas (IQA) em pontos de monitoramento das cidades de Santos, Cubatão e Bertioga.  E assim, construir um modelo de classificação supervisionada que preveja a categoria de qualidade da água com base em seus parâmetros individuais ( físico-químicos e microbiológicos).
+**Disciplina: Projeto Integrador III**
 
-**Período da pesquisa:** 2022 a 2025, um período de 4 anos.
+* Integrantes: Gabrielle Lara, Giulia Granado, Yuri Salgado
+* Professor: João Paulo de Mello
+* Curso: Tecnologia em Ciência de Dados — FATEC
 
-**Área pesquisa:** foram escolhidas as cidades de Santos, Bertioga e Cubatão para serem utilizadas na pesquisa, comparando 3 perfis diferentes de cidades: urbana/portuária x industrial x ecoturismo/residencial. Usaremos 3 pontos de coleta, sendo um de cada munícipio. (Santos sendo o único ponto de coleta e de Cubatão e Bertioga, sendo o ponto de coleta mais perto da local de tratamento).
+---
+
+## 📋 Descrição da pesquisa
+
+### ❓ Pergunta de pesquisa
+
+> Qual será a concentração de Oxigênio Dissolvido (mg/L) na água com base nas medições físico-químicas e ambientais da amostra?
+
+### 🎯 Objetivo geral
+
+Prever a concentração de Oxigênio Dissolvido (OD) na água do Complexo Billings a partir de medições físico-químicas e ambientais (como pH, temperatura, turbidez, nutrientes, clorofila-a e pluviometria). A previsão serve de apoio à decisão de operadores de Estações de Tratamento de Água (ETA) e gestores da bacia hidrográfica, que podem acionar aeração preventiva e ajustar a dosagem de insumos antes que a água chegue ao ponto de captação.
+
+### 📅 Período da pesquisa
+
+2022 a 2025 (histórico de monitoramento das estações amostradoras).
+
+### 🔬 Área da pesquisa
+
+Ciência de Dados aplicada ao monitoramento da qualidade da água e dos recursos hídricos, com foco em aprendizado estatístico supervisionado (regressão e predição).
+
+---
+
+## 🗂️ Dados utilizados
+
+- **Base:** `Dataset_atual.csv`, com o histórico de monitoramento contínuo de estações amostradoras.
+- **Pontos amostradores:** BILL02900, BIRP00500 e CFUG02900.
+- **Tamanho:** 48 observações e 17 preditores físico-químicos e ambientais (pH, temperatura, turbidez, nutrientes, sólidos, pluviometria, clorofila-a, metais).
+- **Variável resposta:** Oxigênio Dissolvido (OD), em mg/L.
+
+---
+
+## 📊 Resultados preliminares
+
+Um modelo de regressão linear, avaliado por validação cruzada de 5 dobras, foi comparado com a linha de base (prever sempre a média).
+
+| Modelo | RMSE (mg/L) |
+|---|---|
+| Linha de base (média) | 1,3604 |
+| Regressão linear | 0,8557 |
+
+O modelo reduziu o erro em **37,10%** em relação à linha de base, o que indica que os preditores ambientais carregam sinal real sobre o OD.
+
+---
+
+## 📁 Estrutura do repositório
+
+```
+qualidade-agua/
+├── AnaliseExploratoria.md
+├── Códigos/
+├── entrega/
+│   └── entrega_TeoriaAprendizado.pdf
+├── estrutura/
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 📄 Documento da entrega
+
+O texto completo da pesquisa está em [`entrega/entrega_TeoriaAprendizado.pdf`](./entrega/entrega_TeoriaAprendizado.pdf).
