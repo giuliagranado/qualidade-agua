@@ -1,1 +1,1 @@
-TBA
+Foi realizado o Knn do Oxigênio dissolvido com cada um dos outros componentes do IQA, com o melhor resultado sendo o PH. apesar de algumas relações terem sidos bem discritivas de maneira coerentes, como o resultado para temperadura que se adequa á uma tendencia quase-sazonal, o restante dos resultados não necessáriamente trazem relações interessantes, em grande parte pelas distribuições dipersas dos dados originais.
