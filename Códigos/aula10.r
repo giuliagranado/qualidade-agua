@@ -1,41 +1,18 @@
-DADOS <- read.csv("/content/Dataset_novo_V3.csv", sep=",")
-ints <- function(col) as.numeric(gsub(",",".",col))
-x <- ints(DADOS[,7]); y <- ints(DADOS[,6])
+library(splines); library(mgcv)
+d <- na.omit(data.frame(y = DBO, x1 = PH, x2 = NITRO_TOT, x3 = TEMP))
 
-KKKKKMMMM <- function(x,y) { cv_de(reta) # a reta
-ks <- c(3, 5, 10, 20, 40); ks <- ks[ks < 0.8 * length(y)] # KNN
-sapply(ks, function(k) cv_de(function(x0, x, y) knn_reg(x0, x, y, k)))
-hs <- sd(x) * c(0.05, 0.1, 0.2, 0.4) # kernel
-sapply(hs, function(h) cv_de(function(x0, x, y) nw(x0, x, y, h)))
-g <- seq(min(x), max(x), length = 200) # a figura
-plot(x, y, col = "gray60"); lines(g, sapply(g, nw, x = x, y = y, h = hs[2]), lwd = 2) }
+set.seed(1); dobra <- sample(rep(1:6, length = nrow(d)))
+cv_de <- function(ajusta) mean(sapply(1:5, function(j) { # CV(5) de um modelo
+tr <- d[dobra != j, ]; va <- d[dobra == j, ]
+mean((va$y - ajusta(tr, va))^2)
+}))
 
-print("para PH")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,8])
-print("para Temperatura")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,13])
-print("para Nitro total")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,14])
-print("para Fósforo total")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,15])
-print("para Turbidez")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,16])
-print("para Sólidos")
-KKKKKMMMM(x,y)
-
-x <- ints(DADOS[,19])
-print("para Clorofila A")
-KKKKKMMMM(x,y)
-
-                             
-
+cv_de(function(tr, va) mean(tr$y)) # linha de base
+cv_de(function(tr, va) predict(lm(y ~ x1 + x2 + x3, data = tr), va)) # MQO
+sapply(2:8, function(k) cv_de(function(tr, va) # spline em x1
+predict(lm(y ~ ns(x1, df = k) + x2 + x3, data = tr), va)))
+print(cv_de(function(tr, va) mean(tr$y)))
+cv_de(function(tr, va) predict(gam(y ~ s(x1, k = 3) + s(x2, k = 3) + s(x3, k = 3), data = tr), va)) # GAM
+g <- gam(y ~ s(x1, k = 3) + s(x2, k = 3) + s(x3, k = 3), data = d)
+round(summary(g)$s.table[, "edf"], 2) # perto de 1 = reta
+par(mfrow = c(1, 3), pty = "s"); plot(g, scheme = 1) 
