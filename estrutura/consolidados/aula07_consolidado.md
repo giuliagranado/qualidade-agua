@@ -1,1 +1,2 @@
+<h1>K-fold</h1>
 O teste foi feito com as variáveis ph  e IQA, considerando o total de 48 colunas do dataset, o sample do treino foi de 34. foram testados os graus de 1 á 6. ajuste ao final não foi ideal, caindo ao redor de 0,14
