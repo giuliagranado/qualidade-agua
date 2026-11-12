@@ -22,8 +22,6 @@ O modelo foi escolheu um lambda minimo de 133.641444102936, com um RMSE de 11656
 <h1>Lasso</h1>
 
 Assim como o ridge, o lasso foi aplicado no IQA descrito por todo o restante. Se obteu a tabela: <br>
-lambda	| CV_mse | CV_rmse	| preditores <br>
-lambda.min	| 4.58	| 65	| 8.0	 | 3 <br>
-lambda.1se	| 9.65	| 102	| 10.1 | 0 <br>
 
-o CV minimo foi de 65
+lambda.min | lambda 4.58	 | CV_mse 65	 | CV_rmse 8.0 | preditores 3 | <br>
+lambda.1se | lambda 9.65 | CV_mse 102	 | CV_rmse 10.1 | preditores 0 | <br>
