@@ -1,11 +1,6 @@
 <h1>Resumo</h1>
-Os cvs foram os seguintes:
-Grau 1- 486.230523315804
-Grau 2 - 454.086542140614
-Grau 3 - 437.021765368207
-Grau 4 - 443.679256915279
-Grau 5 - 403.130162251132
-Grau 6 - 412.08771620399, 
+Os cvs foram os seguintes, respectivamente do 1 ao 6:
+486.230523315804, 454.086542140614, 437.021765368207, 443.679256915279, 403.130162251132 e 412.08771620399, 
 
 Desta maneira ganhou a regressão polinomial de grau 5, o coeficiente é distinguível de 0
 
