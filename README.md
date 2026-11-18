@@ -32,7 +32,7 @@ Ciência de Dados aplicada ao monitoramento da qualidade da água e dos recursos
 
 - **Base:** `Dataset_novo_V3.csv`, com o histórico de monitoramento contínuo de estações amostradoras.
 - **Código dos Pontos amostradores:** BILL02900, BIRP00500 e CFUG02900.
-- **Nome dos Pontos Amostradores:** Reservatório Billings - BILL; Braço do Rio Pequeno - BIRP; Canal de Fuga II da UHE Henry Borden - CFUG
+- **Nome dos Pontos Amostradores:** Reservatório Billings - BILL (São Bernardo do Campo - SP); Braço do Rio Pequeno - BIRP (São Bernardo do Campo - SP); Canal de Fuga II da UHE Henry Borden - CFUG (Cubatão - SP)
 - **Tamanho:** 48 observações e 17 preditores físico-químicos e ambientais (pH, temperatura, turbidez, nutrientes, sólidos, pluviometria, clorofila-a, metais).
 - **Variável resposta:** Oxigênio Dissolvido (OD), em mg/L; pH U.pH; Temperatura da Água, em ºC; Nitrogênio total, em mg/L; Fósforo Total, em mg/L; Turbidez, em UNT(Unidade Nefelométrica de Turbidez); Sólido Dissolvido Total, em mg/L.
 
